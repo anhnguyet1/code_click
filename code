@@ -1,0 +1,28 @@
+setInterval(function() {
+    var x = 500; // Tọa độ x của điểm nhấp
+    var y = 500; // Tọa độ y của điểm nhấp
+    var element = document.elementFromPoint(x, y);
+    
+    if (element) {
+        element.click();
+
+        // Tạo một phần tử để hiển thị tại điểm nhấp
+        var indicator = document.createElement('div');
+        indicator.style.position = 'absolute';
+        indicator.style.top = (y - 10) + 'px';
+        indicator.style.left = (x - 10) + 'px';
+        indicator.style.width = '20px';
+        indicator.style.height = '20px';
+        indicator.style.backgroundColor = 'red';
+        indicator.style.borderRadius = '50%';
+        indicator.style.zIndex = 10000; // Đảm bảo nó nằm trên các phần tử khác
+
+        // Thêm phần tử vào body
+        document.body.appendChild(indicator);
+
+        // Loại bỏ phần tử sau 1 giây
+        setTimeout(function() {
+            document.body.removeChild(indicator);
+        }, 1000);
+    }
+}, 3000);
